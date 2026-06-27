@@ -1,0 +1,106 @@
+@import "tailwindcss";
+
+/* Reset */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  background:#f3f4f6;
+  font-family:Inter,Arial,Helvetica,sans-serif;
+  color:#1f2937;
+}
+
+/* Scrollbar */
+
+::-webkit-scrollbar{
+  width:10px;
+}
+
+::-webkit-scrollbar-track{
+  background:#e5e7eb;
+}
+
+::-webkit-scrollbar-thumb{
+  background:#3b82f6;
+  border-radius:20px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+  background:#2563eb;
+}
+
+/* Text Selection */
+
+::selection{
+  background:#2563eb;
+  color:white;
+}
+
+/* Buttons */
+
+button{
+  cursor:pointer;
+  transition:all .25s ease;
+}
+
+/* Inputs */
+
+input,
+select,
+textarea{
+  transition:all .25s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+  outline:none;
+}
+
+/* Calendar */
+
+.rbc-calendar{
+  border:none;
+}
+
+.rbc-toolbar{
+  margin-bottom:25px;
+}
+
+.rbc-toolbar button{
+  border-radius:10px !important;
+}
+
+.rbc-event{
+  border-radius:8px !important;
+}
+
+/* Cards */
+
+.card-hover{
+  transition:all .3s ease;
+}
+
+.card-hover:hover{
+  transform:translateY(-3px);
+}
+
+/* Images */
+
+img{
+  user-select:none;
+}
+
+/* Links */
+
+a{
+  text-decoration:none;
+}
