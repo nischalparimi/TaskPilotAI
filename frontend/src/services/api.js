@@ -1,23 +1,12 @@
 import axios from "axios";
 
-const api = axios.create({
-
-    baseURL:"http://127.0.0.1:8000"
-
+const API = axios.create({
+  baseURL: "https://taskpilotai-backend-zl8q.onrender.com",
 });
 
-export const generatePlan = async(taskData)=>{
-
-    const response = await api.post(
-
-        "/generate-plan",
-
-        taskData
-
-    );
-
-    return response.data;
-
+export const generatePlan = async (data) => {
+  const response = await API.post("/generate-plan", data);
+  return response.data;
 };
 
-export default api;
+export default API;
