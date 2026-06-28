@@ -6,14 +6,22 @@ from gemini_service import generate_plan, ask_ai
 
 app = FastAPI(title="TaskPilot AI Backend")
 
+
+# CORS
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=[
+        "http://localhost:5173",
+        "https://task-pilot-ai-steel.vercel.app",
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
+
+# Request Models
 
 class TaskRequest(BaseModel):
     task: str
@@ -26,6 +34,8 @@ class ChatRequest(BaseModel):
     question: str
 
 
+# Home
+
 @app.get("/")
 def home():
     return {
@@ -33,24 +43,38 @@ def home():
     }
 
 
+# AI Planner
+
 @app.post("/generate-plan")
 def ai_plan(data: TaskRequest):
 
-    plan = generate_plan(
-        data.task,
-        data.deadline,
-        data.hours,
-        data.category,
-    )
+    try:
 
-    return {
-        "plan": plan
-    }
+        plan = generate_plan(
+            data.task,
+            data.deadline,
+            data.hours,
+            data.category,
+        )
 
+        return {
+            "plan": plan
+        }
+
+    except Exception as e:
+
+        return {
+            "plan": f"Error: {str(e)}"
+        }
+
+
+# AI Assistant
 
 @app.post("/chat")
 def chat(request: ChatRequest):
+
     try:
+
         answer = ask_ai(request.question)
 
         return {
@@ -60,5 +84,5 @@ def chat(request: ChatRequest):
     except Exception as e:
 
         return {
-            "answer": str(e)
+            "answer": f"Error: {str(e)}"
         }
